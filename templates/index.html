@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Conversion</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    {% if error %}
+    <div class="error">
+        <p>{{error}}</p>
+    </div>
+    <br><br>
+    {% endif %}
+    <form method="POST">
+        {{form.hidden_tag()}}
+        {{form.amount}}<br><br>
+        <label>From:</label><br>
+        {{form.currency1()}}<br><br>
+        <label>To:</label><br>
+        {{form.currency2()}}<br><br>
+        {{form.submit()}}
+    </form>
+    {% if converted_data %}
+    <br><br>
+    <div class="result">
+        <p>{{converted_data.amount}} {{converted_data.currency1}} is
+            {{converted_data.converted_amount}} {{converted_data.currency2}}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
